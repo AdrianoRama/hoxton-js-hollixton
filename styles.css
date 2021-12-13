@@ -11,7 +11,8 @@
 body {
     display: grid;
     height: 100vh;
-    grid-template-rows: 50px 1fr 50px;
+    width: 100vw;
+    grid-template-rows: 6% 88% 6%;
 }
 
 header {
@@ -21,20 +22,23 @@ header {
 }
 
 header h2 {
-    padding-top: .6rem;
-    padding-left: 1rem;
+    margin-top: .5rem;
+    margin-left: 1rem;
 }
 
 header h4 {
-    padding-top: 1rem;
+    margin-top: 1rem;
+    cursor: pointer;
+    text-align: center;
 }
 
 header img {
-    padding-top: .8rem;
+    margin-top: .8rem;
+    cursor: pointer;
 }
 
 .searchBtn {
-    padding-left: 60rem;
+    margin-left: 60rem;
 }
 
 main {
