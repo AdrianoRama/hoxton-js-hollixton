@@ -1,0 +1,46 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Courgette&family=Playfair+Display&family=Roboto:wght@100;400;500&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    display: grid;
+    height: 100vh;
+    grid-template-rows: 50px 1fr 50px;
+}
+
+header {
+    display: grid;
+    grid-auto-flow: column;
+    background-color: #f8f9fa;
+}
+
+header h2 {
+    padding-top: .6rem;
+    padding-left: 1rem;
+}
+
+header h4 {
+    padding-top: 1rem;
+}
+
+header img {
+    padding-top: .8rem;
+}
+
+.searchBtn {
+    padding-left: 60rem;
+}
+
+main {
+    background-color: #e9ecef;
+}
+
+footer {
+    background-color: #adb5bd;
+}
