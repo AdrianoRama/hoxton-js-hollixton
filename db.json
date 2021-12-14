@@ -7,7 +7,7 @@
         "image": "https://img.hollisterco.com/is/image/anf/KIC_324-1085-0123-100_prod1",
         "price": 40,
         "discountedPrice": 21.99,
-        "dateEntered": "2021/08/10",
+        "dateEntered": "2021/12/10",
         "stock": 10
       },
       {
@@ -43,7 +43,7 @@
         "name": "Gilly Hicks Woven Boxer",
         "image": "https://img.hollisterco.com/is/image/anf/KIC_309-1408-0413-136_prod1",
         "price": 12,
-        "dateEntered": "2021/07/10",
+        "dateEntered": "2021/12/10",
         "stock": 2
       },
       {
@@ -112,7 +112,7 @@
         "image": "https://img.hollisterco.com/is/image/anf/KIC_354-1013-0002-100_prod1",
         "price": 14,
         "discountedPrice": 5.99,
-        "dateEntered": "2021/07/10",
+        "dateEntered": "2021/12/10",
         "stock": 10
       }
     ],
