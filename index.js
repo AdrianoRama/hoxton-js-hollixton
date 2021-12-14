@@ -40,6 +40,14 @@ function renderHeader() {
     boysButton.textContent = `Boys`
     boysEl.append(boysButton)
 
+    boysButton.addEventListener(`click`, function() {
+        mainEl.innerHTML = ``
+      let boysList =  state.store.filter(item => !item.type.includes(`Girls`))
+        state.store = boysList
+
+        render()
+    })
+
     const saleEl = document.createElement(`h4`)
     saleButton = document.createElement(`button`)
     saleButton.textContent = `Sale`
