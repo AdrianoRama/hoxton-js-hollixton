@@ -10,39 +10,52 @@
 
 body {
     display: grid;
-    height: 100vh;
-    width: 100vw;
-    grid-template-rows: 6% 88% 6%;
+    grid-template-rows: 70px 1fr 40px;
 }
 
 header {
-    display: grid;
-    grid-auto-flow: column;
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
     background-color: #f8f9fa;
 }
 
-header h2 {
-    margin-top: .5rem;
+header ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(3,50px);
+    align-items: center;
+}
+
+.categories {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 30px;
     margin-left: 1rem;
 }
 
-header h4 {
-    margin-top: 1rem;
-    cursor: pointer;
-    text-align: center;
-}
-
-header img {
-    margin-top: .8rem;
+button{
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    font-size:1rem;
     cursor: pointer;
 }
 
-.searchBtn {
-    margin-left: 60rem;
+.settings {
+    display: grid;
+    grid-template-columns: repeat(3,30px);
+    justify-content: end;
+    gap: 1rem;
+    margin-right: 1rem;
 }
 
 main {
     background-color: #e9ecef;
+    display: grid;
+    height: 100vh;
+    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+    padding: 2rem;
 }
 
 footer {
