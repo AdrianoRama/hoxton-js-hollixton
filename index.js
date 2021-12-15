@@ -1,6 +1,7 @@
 const state = {
     store: [],
-    tab: null
+    tab: null,
+    selectedItem: null
 }
 
 function getData() {
@@ -9,16 +10,9 @@ function getData() {
     })
 }
 
-
-const headerEl = document.createElement(`header`)
-
-const mainEl = document.createElement(`main`)
-
 function renderHeader() {
 
-    headerEl.innerHTML = ``
-
-
+    const headerEl = document.createElement(`header`)
 
     const divEl = document.createElement(`div`)
     divEl.setAttribute(`class`, `categories`)
@@ -27,9 +21,9 @@ function renderHeader() {
     h2El.setAttribute(`class`, `page`)
     h2El.textContent = `Hollixton`
 
-    h2El.addEventListener(`click`, function() {
-        mainEl.innerHTML = ``
+    h2El.addEventListener(`click`, function () {
         state.tab = null
+        state.selectedItem = null
         changeState()
     })
 
@@ -41,8 +35,8 @@ function renderHeader() {
     girlsEl.append(girlsButton)
 
     girlsButton.addEventListener(`click`, function () {
-        mainEl.innerHTML = ``
         state.tab = 'Girls'
+        state.selectedItem = null
         changeState()
     })
 
@@ -52,9 +46,8 @@ function renderHeader() {
     boysEl.append(boysButton)
 
     boysButton.addEventListener(`click`, function () {
-        mainEl.innerHTML = ``
-
         state.tab = 'Guys'
+        state.selectedItem = null
         changeState()
     })
 
@@ -64,9 +57,8 @@ function renderHeader() {
     saleEl.append(saleButton)
 
     saleButton.addEventListener(`click`, function () {
-        mainEl.innerHTML = ``
-
         state.tab = `sale`
+        state.selectedItem = null
         changeState()
     })
 
@@ -110,21 +102,23 @@ function isItemNew(item) {
     const daysToConsider = 11
 
     const second = 1000
-    const minute = second*60
-    const hour = minute*60
-    const day = hour*24
+    const minute = second * 60
+    const hour = minute * 60
+    const day = hour * 24
 
-    const msForTenDaysAgo = Date.now() - day*daysToConsider
+    const msForTenDaysAgo = Date.now() - day * daysToConsider
 
     const msForProductDate = Date.parse(item.dateEntered)
 
     return msForProductDate > msForTenDaysAgo
 }
 
-function renderMain() {
-
+function renderItemList(mainEl) {
     const h3El = document.createElement(`h3`)
     h3El.textContent = `Home`
+
+    const containerEl = document.createElement(`div`)
+    containerEl.setAttribute(`class`, `container`)
 
     for (const item of state.store) {
 
@@ -132,19 +126,26 @@ function renderMain() {
         itemSectionEl.setAttribute(`class`, `product-item`)
         const itemLinkEl = document.createElement('a')
         itemLinkEl.setAttribute('href', '#')
+
+        itemLinkEl.addEventListener(`click`, function () {
+            state.selectedItem = item
+            render()
+        })
+
+
         const clothesEl = document.createElement(`img`)
         clothesEl.setAttribute(`class`, `clothes`)
         clothesEl.setAttribute(`src`, item.image)
         clothesEl.setAttribute(`width`, `250px`)
         itemLinkEl.append(clothesEl)
 
-        titleEl = document.createElement(`h3`)
+        const titleEl = document.createElement(`h3`)
         titleEl.textContent = item.name
 
         const fullPriceEl = document.createElement('p')
         fullPriceEl.setAttribute('class', 'product-item__price')
 
-        priceEl = document.createElement(`span`)
+        const priceEl = document.createElement(`span`)
         priceEl.setAttribute(`class`, `normal-price`)
         priceEl.textContent = `£${item.price}`
 
@@ -167,10 +168,44 @@ function renderMain() {
 
         itemSectionEl.append(itemLinkEl, titleEl, fullPriceEl)
 
-        mainEl.append(itemSectionEl)
+        containerEl.append(itemSectionEl)
     }
+    mainEl.append(h3El, containerEl)
+}
+
+function renderItemDetails(mainEl) {
+
+    const divEl = document.createElement(`div`)
+    divEl.setAttribute(`class`, `solo-item`)
+
+    const h2El = document.createElement(`h2`)
+    h2El.textContent = state.selectedItem.name
+
+    const imgEl = document.createElement(`img`)
+    imgEl.setAttribute(`src`, state.selectedItem.image)
+
+    const addToCartEl = document.createElement(`button`)
+    addToCartEl.setAttribute(`class`, `add-to-cart-btn`)
+    addToCartEl.textContent = `Add to cart`
+
+    divEl.append(imgEl, h2El, addToCartEl)
+
+    mainEl.append(divEl)
+}
+
+function renderMain() {
+    const mainEl = document.createElement(`main`)
+
+    if (state.selectedItem == null) {
+        renderItemList(mainEl)
+    }
+    else {
+        renderItemDetails(mainEl)
+    }
+
     document.body.append(mainEl)
 }
+
 
 function renderFooter() {
     const footerEl = document.createElement(`footer`)
@@ -210,13 +245,13 @@ function saleState() {
 }
 
 function changeState() {
-    if(state.tab === `Girls`) {
+    if (state.tab === `Girls`) {
         girlsState()
-    } else if(state.tab === `Guys`) {
+    } else if (state.tab === `Guys`) {
         guysState()
-    } else if(state.tab === `sale`) {
+    } else if (state.tab === `sale`) {
         saleState()
-    } else if(state.tab === null) {
+    } else if (state.tab === null) {
         normalState()
     }
 }
