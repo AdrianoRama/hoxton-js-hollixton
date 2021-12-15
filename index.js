@@ -1,7 +1,8 @@
 const state = {
     store: [],
     tab: null,
-    selectedItem: null
+    selectedItem: null,
+    pageTitle: `Home`
 }
 
 function getData() {
@@ -24,6 +25,7 @@ function renderHeader() {
     h2El.addEventListener(`click`, function () {
         state.tab = null
         state.selectedItem = null
+        state.pageTitle = `Home`
         changeState()
     })
 
@@ -37,6 +39,7 @@ function renderHeader() {
     girlsButton.addEventListener(`click`, function () {
         state.tab = 'Girls'
         state.selectedItem = null
+        state.pageTitle = `Girls`
         changeState()
     })
 
@@ -48,6 +51,7 @@ function renderHeader() {
     boysButton.addEventListener(`click`, function () {
         state.tab = 'Guys'
         state.selectedItem = null
+        state.pageTitle = `Boys`
         changeState()
     })
 
@@ -59,6 +63,7 @@ function renderHeader() {
     saleButton.addEventListener(`click`, function () {
         state.tab = `sale`
         state.selectedItem = null
+        state.pageTitle = `Sale`
         changeState()
     })
 
@@ -115,7 +120,8 @@ function isItemNew(item) {
 
 function renderItemList(mainEl) {
     const h3El = document.createElement(`h3`)
-    h3El.textContent = `Home`
+    h3El.setAttribute(`class`, `main-title`)
+    h3El.textContent = state.pageTitle
 
     const containerEl = document.createElement(`div`)
     containerEl.setAttribute(`class`, `container`)
@@ -166,6 +172,13 @@ function renderItemList(mainEl) {
             itemSectionEl.append(newTag)
         }
 
+        if (item.stock == 0) {
+            const outOfStock = document.createElement('span')
+            outOfStock.setAttribute('class', 'out-of-stock')
+            outOfStock.textContent = 'OUT OF STOCK!'
+            itemSectionEl.append(outOfStock)
+        }
+
         itemSectionEl.append(itemLinkEl, titleEl, fullPriceEl)
 
         containerEl.append(itemSectionEl)
@@ -186,7 +199,13 @@ function renderItemDetails(mainEl) {
 
     const addToCartEl = document.createElement(`button`)
     addToCartEl.setAttribute(`class`, `add-to-cart-btn`)
-    addToCartEl.textContent = `Add to cart`
+    addToCartEl.textContent = `ADD TO CART`
+
+    addToCartEl.addEventListener(`click`, function () {
+        state.selectedItem = null
+        render()
+    })
+
 
     divEl.append(imgEl, h2El, addToCartEl)
 

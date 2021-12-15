@@ -18,7 +18,7 @@ header {
     display:grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
-    background-color: #f8f9fa;
+    background-color: #F3F5F7;
 }
 
 .page {
@@ -69,7 +69,12 @@ main {
     
     display: grid;
     grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+    gap: 1rem;
     
+}
+
+.main-title{
+    margin-bottom: 1rem;
 }
 
 
@@ -110,6 +115,22 @@ main {
   font-size: 0.8rem;
 }
 
+.out-of-stock{
+    position: absolute;
+    top: -1.4rem;
+    right: 6.5rem;
+  
+    background-color: red;
+    color: white;
+    padding: 0.2rem;
+  
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+  
+    font-size: 0.8rem;
+  }
+
+
 .solo-item{
     display: grid;
     justify-content: center;
@@ -138,5 +159,5 @@ main {
 }
 
 footer {
-    background-color: #adb5bd;
+    background-color: #242325;
 }
