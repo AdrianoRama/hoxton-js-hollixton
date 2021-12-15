@@ -63,6 +63,13 @@ function renderHeader() {
     saleButton.textContent = `Sale`
     saleEl.append(saleButton)
 
+    saleButton.addEventListener(`click`, function () {
+        mainEl.innerHTML = ``
+
+        state.tab = `sale`
+        changeState()
+    })
+
     ulEl.append(girlsEl, boysEl, saleEl)
     divEl.append(h2El, ulEl)
 
@@ -195,11 +202,20 @@ function guysState() {
     })
 }
 
+function saleState() {
+    getData().then(function (item) {
+        state.store = item.filter(item => item.discountedPrice !== undefined)
+        render()
+    })
+}
+
 function changeState() {
     if(state.tab === `Girls`) {
         girlsState()
     } else if(state.tab === `Guys`) {
         guysState()
+    } else if(state.tab === `sale`) {
+        saleState()
     } else if(state.tab === null) {
         normalState()
     }
